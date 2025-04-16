@@ -11,4 +11,4 @@ On root, run the following commands:
 The executable should be in build/number-guessing-game.exe.
 
 ## Preview
-todo
+![image](https://github.com/user-attachments/assets/c7ea4719-5444-4f0f-9218-4cdab164e240)
