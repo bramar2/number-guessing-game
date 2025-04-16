@@ -99,12 +99,12 @@ int main() {
 		for (int d = 1; d <= 3; d++) {
 			std::cout << DIFFICULTY_NAME[d] << " - ";
 			if (games[d] == 0) {
-				std::cout << "Not played yet";
+				std::cout << "No games";
 			} else {
 				std::cout << wins[d] << " " << (wins[d] == 1 ? "win" : "wins") << " out of " << games[d] << " games ";
-				std::cout << "(" << std::fixed << std::setprecision(3) << 1.0 * wins[d] / games[d] << "% games)";
+				std::cout << "(" << std::fixed << std::setprecision(1) << 1.0 * wins[d] / games[d] << "% games)";
 				if (wins[d] > 0) {
-					std::cout << ", averaging " << std::fixed << std::setprecision(3) << 1.0 * attemptSum[d] / wins[d] << " attempts per win";
+					std::cout << ", averaging " << std::fixed << std::setprecision(1) << 1.0 * attemptSum[d] / wins[d] << " attempts per win";
 					std::cout << ", with the best game completed in " << best[d] << " attempt";
 					if (best[d] > 1) std::cout << "s";
 				}
