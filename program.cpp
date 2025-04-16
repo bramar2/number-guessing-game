@@ -12,8 +12,8 @@ Please select the difficulty level:
 3. Hard (3 chances)
 
 )";
-constexpr char HIGH_SCORE_START_MSG[] = R"(
-Here's your high score so far:
+constexpr char STATS_START_MSG[] = R"(
+Here is your statistics for each difficulty level:
 )";
 
 constexpr char DIFFICULTY_PROMPT[] = "Enter your choice: ";
@@ -94,26 +94,28 @@ int main() {
 		std::cout << "Do you want to play again (yes/<any>)? ";
 		std::getline(std::cin, input);
 		for (char& c : input) c = std::tolower(c);
-		if (input != "yes") {
-			break;
-		}
 
-		std::cout << HIGH_SCORE_START_MSG;
+		std::cout << STATS_START_MSG;
 		for (int d = 1; d <= 3; d++) {
 			std::cout << DIFFICULTY_NAME[d] << " - ";
 			if (games[d] == 0) {
 				std::cout << "Not played yet";
 			} else {
-				std::cout << wins[d] << " wins out of " << games[d] << " games ";
+				std::cout << wins[d] << " " << (wins[d] == 1 ? "win" : "wins") << " out of " << games[d] << " games ";
 				std::cout << "(" << std::fixed << std::setprecision(3) << 1.0 * wins[d] / games[d] << "% games)";
 				if (wins[d] > 0) {
 					std::cout << ", averaging " << std::fixed << std::setprecision(3) << 1.0 * attemptSum[d] / wins[d] << " attempts per win";
-					std::cout << ", with the best game completed in " << best[d] << " attempts";
+					std::cout << ", with the best game completed in " << best[d] << " attempt";
+					if (best[d] > 1) std::cout << "s";
 				}
 			}
 			std::cout << ".\n";
 		}
 		std::cout << std::endl;
+
+		if (input != "yes") {
+			break;
+		}
 	}
 	std::cout << "Quitting." << std::endl;
 	return 0;
