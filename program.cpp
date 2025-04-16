@@ -107,7 +107,7 @@ int main() {
 				std::cout << "No games";
 			} else {
 				std::cout << wins[d] << " " << (wins[d] == 1 ? "win" : "wins") << " out of " << games[d] << " games ";
-				std::cout << "(" << std::fixed << std::setprecision(1) << 1.0 * wins[d] / games[d] << "% win rate)";
+				std::cout << "(" << std::fixed << std::setprecision(1) << 100.0 * wins[d] / games[d] << "% win rate)";
 				if (wins[d] > 0) {
 					std::cout << ", averaging " << std::fixed << std::setprecision(1) << 1.0 * attemptSum[d] / wins[d] << " attempts per win";
 					std::cout << ", with the best game completed in " << best[d] << " attempt";
