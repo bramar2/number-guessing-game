@@ -1,5 +1,6 @@
 #include <chrono>
 #include <iostream>
+#include <iomanip>
 #include <random>
 
 constexpr char WELCOME[] = "Welcome to the Number Guessing Game!\n";
