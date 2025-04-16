@@ -69,6 +69,7 @@ int main() {
 		int max = DIFFICULTY_MAX_CHANCES[difficulty];
 		int hidden = distribution(mt);
 		int success = -1;
+		auto start = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
 		for (int attempt = 1; attempt <= max; attempt++) {
 			int guess = readInt(GUESS_PROMPT);
@@ -82,14 +83,18 @@ int main() {
 				std::cout << "Incorrect! The number is greater than " << guess << ".\n\n" << std::flush;
 			}
 		}
+		auto end = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 		if (success == -1) {
 			std::cout << "You ran out of attempts! The number was " << hidden << ".\n\n" << std::flush;
 		} else {
+			double diff = (end - start).count() / 1000.0;
+
 			wins[difficulty]++;
 			attemptSum[difficulty] += success;
 			if (best[difficulty] == 0 || success < best[difficulty]) 
 				best[difficulty] = success;
-			std::cout << "Congratulations! You guessed the correct number in " << success << " attempts.\n\n" << std::flush;
+			std::cout << "Congratulations! You guessed the correct number in " << success << " attempts. ";
+			std::cout << "It took you " << std::fixed << std::setprecision(1) << diff << "s.\n\n" << std::flush;
 		}
 		std::cout << "Do you want to play again (yes/<any>)? ";
 		std::getline(std::cin, input);
